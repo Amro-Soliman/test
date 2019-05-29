@@ -1,0 +1,53 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>halo@example.com</td>
+      <td><button type="button" class="btn btn-danger">Remove</button></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>jt@sweet.org</td>
+      <td><button type="button" class="btn btn-danger">Remove</button></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>bird@hotmail.com</td>
+      <td><button type="button" class="btn btn-danger">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-primary">Add</button>
+$( "tbody" ).on( "click", "button.btn-danger", function( event ) {
+	if ( confirm('Really delete?') ) {
+		$( this ).parent().parent().addClass('delete-row').fadeOut();
+	}
+});
+
+
+$( "button.btn-primary" ).click( function( event ) {
+	// do something
+});
+$("button.btn-primary").click(function(){
+  $.ajax({url: "https://randomuser.me/api/?result=1", 
+  success: function(result){
+  console.log(result['results'][0]['name']['first']);
+    $("tbody").append('<tr><td>10</td><td>' +result['results'][0]['name']['first']  + '</td><td> ' +result["results"][0]["name"]["last"] + '</td><td> ' + result['results'][0]["email"] + '</td><td><button type="button" class="btn btn-danger">Remove</button></td></tr>');
+  }});
+});
